@@ -1,0 +1,65 @@
+scalar DateTimeISO
+
+type Mutation {
+	uploadMedia(file: Upload!): String!
+}
+
+type Query {
+	hello: String!
+}
+
+"""
+Application role. Mirrors `enum Role { ADMIN USER }` in the Node backend's
+`src/contexts/role/role.gql`. The GraphQL representation (SCREAMING_SNAKE_CASE)
+matches the serde representation, so the same value crosses the wire and the
+storage boundary unchanged.
+"""
+enum Role {
+	ADMIN
+	USER
+}
+
+type Subscription {
+	count(to: Int! = 3): Int!
+}
+
+"""
+A multipart file upload
+"""
+scalar Upload
+
+"""
+GraphQL projection of the domain [`DomainUser`]. Field names and types mirror
+`type User` in the Node backend's `user.gql` exactly: async-graphql renames
+snake_case fields to camelCase (`emailVerified`, `createdAt`), and the domain
+newtypes are unwrapped to `String` on the wire. The validation lives in the
+domain; the wire type stays a plain `String`, so the contract is identical to
+Node's.
+"""
+type User {
+	id: String!
+	email: String!
+	name: String!
+	emailVerified: Boolean!
+	image: String
+	biography: String
+	createdAt: DateTimeISO!
+}
+
+"""
+Directs the executor to include this field or fragment only when the `if` argument is true.
+"""
+directive @include(if: Boolean!) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+"""
+Directs the executor to skip this field or fragment when the `if` argument is true.
+"""
+directive @skip(if: Boolean!) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+"""
+Provides a scalar specification URL for specifying the behavior of custom scalar types.
+"""
+directive @specifiedBy(url: String!) on SCALAR
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}
