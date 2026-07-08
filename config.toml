@@ -1,0 +1,34 @@
+# Backend configuration — single source of runtime settings (§5 of the review).
+# Secrets (database url, storage credentials) are NOT stored here: they are
+# supplied at runtime via `GQL_`-prefixed env vars, e.g. GQL_DATABASE__URL,
+# which figment merges over these defaults (nested keys split on `__`).
+
+[server]
+host = "127.0.0.1"
+port = 4000
+base_url = "http://localhost:4000"
+
+[database]
+# url -> GQL_DATABASE__URL (secret)
+case = "snake_case"
+log = false
+
+[storage]
+provider = "supabase" # supabase | s3
+bucket = "media"
+# url  -> GQL_STORAGE__URL  (e.g. https://xyz.supabase.co)
+# key  -> GQL_STORAGE__KEY  (secret; required when provider = supabase)
+
+[auth]
+provider = "session" # session | jwt | oidc
+
+[auth.session]
+cookie_name = "better-auth.session_token"
+verify_signature = true
+# secret (BETTER_AUTH_SECRET) -> GQL_AUTH__SESSION__SECRET (required when verify_signature = true)
+
+[subscriptions]
+transport = "sse" # sse | ws
+
+[cors]
+origins = ["http://localhost:5173"]
