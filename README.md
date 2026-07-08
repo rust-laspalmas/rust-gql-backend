@@ -45,10 +45,10 @@ cargo clippy --workspace --all-targets -- -D warnings
 
 | Repo | What it contributes |
 |------|---------------------|
-| [rust-gql-domain](https://github.com/rust-lasplamas/rust-gql-domain) | shared newtypes + validation (this crate depends on it) |
+| [rust-gql-domain](https://github.com/rust-laspalmas/rust-gql-domain) | shared newtypes + validation (this crate depends on it) |
 | **rust-gql-backend** (this) | the server; **emits** `schema.graphql` |
-| [rust-gql-frontend](https://github.com/rust-lasplamas/rust-gql-frontend) | Leptos client that compiles against the emitted schema |
-| [rust-gql-docs](https://github.com/rust-lasplamas/rust-gql-docs) | bilingual mdBook + rustdoc |
+| [rust-gql-frontend](https://github.com/rust-laspalmas/rust-gql-frontend) | Leptos client that compiles against the emitted schema |
+| [rust-gql-docs](https://github.com/rust-laspalmas/rust-gql-docs) | bilingual mdBook + rustdoc |
 
 `schema.graphql` is the single contract: an incompatible change breaks the build of
 every Rust consumer, and `xtask diff` catches it in CI.
@@ -60,7 +60,7 @@ every Rust consumer, and `xtask diff` catches it in CI.
 <br>
 
 Part of the **GofiGeeks GraphQL → Rust** learning exploration by
-[Rust Las Palmas](https://rust-lasplamas.dev) · [jesusperez.pro](https://jesusperez.pro).
+[Rust Las Palmas](https://rust-laspalmas.dev) · [jesusperez.pro](https://jesusperez.pro).
 
 Not a fork of the workshop — a companion.
 
