@@ -1,0 +1,12 @@
+# Rust build output
+/target
+
+# Environment / secrets
+.env
+
+# macOS / editors
+.DS_Store
+*.swp
+*~
+
+# schema.graphql is the emitted CONTRACT — committed on purpose, not ignored.
