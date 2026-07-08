@@ -1,0 +1,16 @@
+[package]
+name = "xcheck"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+# Reproduces the Leptos client's request natively: same graphql_client codegen,
+# same schema.graphql, same query file the wasm frontend uses.
+graphql_client = "0.16.0"
+reqwest = { workspace = true, features = ["json"] }
+tokio = { workspace = true }
+anyhow = { workspace = true }
